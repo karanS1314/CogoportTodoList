@@ -81,31 +81,6 @@ function getTaskFromLocalStorage() {
   }
 }
 
-function addElementsToPageFrom(arrayOfTasks) {
-  // Empty Tasks Div
-  tasksDiv.innerHTML = "";
-  // Looping On Array Of Tasks
-  arrayOfTasks.forEach((task) => {
-    // Create Main Div
-    let div = document.createElement("div");
-    div.className = "task";
-    // Check If Task is Done
-    if (task.completed) {
-      div.className = "task done";
-    }
-    div.setAttribute("data-id", task.id);
-    div.appendChild(document.createTextNode(task.title));
-    // Create Delete Button
-    let span = document.createElement("span");
-    span.className = "del";
-    span.appendChild(document.createTextNode("Delete"));
-    // Append Button To Main Div
-    div.appendChild(span);
-    // Add Task Div To Tasks Container
-    tasksDiv.appendChild(div);
-  });
-}
-
 // Click On Task Element
 tasksDiv.onclick = (e) => {
   if (e.target.classList.contains("del")) {
