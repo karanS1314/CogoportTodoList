@@ -1,34 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="bumblebee">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-
-    <!--- Tailwind CSS & Daisy UI CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.18.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Favicon -->
-    <link rel="icon" href="res/favicon.svg">
-    <title>Todo List | By Abdellatif Laghjaj</title>
+  <title>Todo-List</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@500&family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1 class="heading">
-            Todo List
-        </h1>
-        <div class="form">
-            <input type="text" class="input" />
-            <input type="submit" class="add" value="Add-Task" />
+    <div class="full">
+        <div class="container">
+            <h2>Todo-List</h2>
+            <div class="box">
+            <input type="text" id="taskinput" placeholder="">
+            <button id="savebtn">Save</button>
+            <button class="fetch">Fetch-Prev-Tasks</button>
+            </div>
+            <ul id="tasks"></ul>
+            <button class="delAll">Delete All</button>
         </div>
-        <input class="fetch" value="Fetch-Prev-Tasks" />
-        <div class="tasks"></div>
-        <div class="delete-all">Delete all</div>
     </div>
-    <!-- JS -->
-    <script src="index.js"></script>
+
+  <script src="index.js"></script>
 </body>
 </html>
