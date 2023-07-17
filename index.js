@@ -55,6 +55,7 @@ function savetask(id, newval) {
   if (taskIndex !== -1) {
     arrayOfTasks[taskIndex].title = newval;
   }
+  addTaskToLocalStorage(arrayOfTasks);
 }
 
 function renderlist() {
