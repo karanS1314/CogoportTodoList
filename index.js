@@ -58,13 +58,36 @@ function savetask(id, newval) {
   addTaskToLocalStorage(arrayOfTasks);
 }
 
+function updateStatus(id) {
+  arrayOfTasks.forEach((task) => {
+    if (task.id == id)
+      task.completed == false
+        ? (task.completed = true)
+        : (task.completed = false);
+  });
+  addTaskToLocalStorage(arrayOfTasks);
+  // console.log(arrayOfTasks);
+}
+
 function renderlist() {
   const tasksDiv = document.getElementById("tasks");
   tasksDiv.innerHTML = "";
 
   for (let i = 0; i < arrayOfTasks.length; i++) {
+    const taskID = arrayOfTasks[i].id;
+
     const task = document.createElement("li");
-    console.log(arrayOfTasks[i]);
+
+    const taskCheck = document.createElement("input");
+    taskCheck.type = "checkbox";
+    taskCheck.onclick = (e) => {
+      e.target.parentElement.classList.toggle("task-done");
+      updateStatus(taskID);
+    };
+    if (arrayOfTasks[i].completed) {
+      task.classList.add("task-done");
+      taskCheck.checked = "true";
+    }
     const taskText = document.createElement("span");
     taskText.innerHTML = arrayOfTasks[i].title;
 
@@ -77,8 +100,6 @@ function renderlist() {
 
     const deletebtn = document.createElement("button");
     deletebtn.innerHTML = "Delete";
-
-    const taskID = arrayOfTasks[i].id;
 
     editbtn.onclick = () => {
       const editinput = document.createElement("input");
@@ -108,6 +129,7 @@ function renderlist() {
     buttonsbox.appendChild(editbtn);
     buttonsbox.appendChild(deletebtn);
 
+    task.appendChild(taskCheck);
     task.appendChild(taskText);
     task.appendChild(buttonsbox);
 
@@ -120,8 +142,10 @@ const savebtn = document.getElementById("savebtn");
 savebtn.onclick = () => {
   const taskInput = document.getElementById("taskinput");
   const task = {
+    userId: Date.now(),
     id: Date.now(),
     title: taskInput.value,
+    completed: false,
   };
   addtask(task);
   taskInput.value = "";

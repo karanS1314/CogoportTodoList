@@ -78,6 +78,10 @@ li button {
     background-color: rgb(121, 0, 0);
     margin: 10px;
 }
+.task-done{
+    opacity: 0.5;
+    position: relative;
+}
 .buttons-container{
     display: flex;
     justify-content: space-between;
