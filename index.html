@@ -4,6 +4,7 @@
   <title>Todo-List</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@500&family=Ubuntu&display=swap" rel="stylesheet">
 </head>
@@ -13,20 +14,18 @@
         <div class="container">
             <div class = "col1">
               <input id="searchbar" onkeyup="search()" type="text"
-              name="search" placeholder="Search tasks / subtasks"> 
+              name="search" class="leftInputs" placeholder="Search by tasks title"> 
+              <hr>
               <div class="filter-container">
                 <div class="filters-container">
-                  <label for="categoryFilter">Category:</label>
                   <input id="categoryFilter" type="text"
-                    name="categoryFilter"> 
+                    name="categoryFilter" class="leftInputs" placeholder="Enter Category"> 
                   <br>
-                  <label for="TagsFilter">Tags:</label>
                   <input id="TagsFilter" type="text"
-                    name="TagsFilter" placeholder="Enter ,(comma) seperated tags"> 
+                    name="TagsFilter" class="leftInputs" placeholder="Enter ,(comma) seperated tags"> 
                   <br>
                   <label for="priorityFilter">Priority:</label>
                   <select name="priorityFilter" id="priorityFilter">
-                    <option value="none" selected>Any</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
@@ -38,9 +37,10 @@
                   <label for="toDate">To:</label>
                   <input type="date" id="toDate" name="toDate">
                 </div>
-                <button id="filterBtn">Filter</button>
-                <button id="resetFilter">Reset</button>
+                <button id="filterBtn" class="leftBtns">Filter</button>
+                <button id="resetFilter" class="leftBtns">Reset</button>
                 <br>
+                <hr>
                 <label for="sort">Sort by</label>
                 <select name="sort" id="sort">
                   <option value="1" selected>Date: Old to New</option>
@@ -48,7 +48,8 @@
                   <option value="3">Priority: Low to High</option>
                   <option value="4">Priority: High to Low</option>
                 </select>
-                <button id="sortBtn">Apply Sort</button>
+                <button id="sortBtn" class="leftBtns">Apply Sort</button>
+                <hr>
                 <label for="backlogs">View backlogs</label>
                 <input type="checkbox" id="backlogs" onClick="toggleView()" name="backlogs">
               </div>
@@ -59,34 +60,35 @@
                   <input type="text" id="taskinput" placeholder="Task Title / Description">
                 </div>
                 <div id="subtask-text-container">
-                  <input type="text" id="subtaskInput" placeholder="Subtask">
+                  <input type="text" id="subtaskInput" class="subtaskInput" placeholder="Subtask">
                   <button id="sub-save-btn">+</button>
                   <div id = "subtask-saved"></div>
                 </div>
                 <div class="filters-container">
-                  <label for="category">Category:</label>
-                  <input type="text" id="category" name="category">
-                  <label for="tags">Tags:</label>
-                  <input type="text" id="tags" name="tags" placeholder="Enter ,(comma) seperated tags">
-                  <label for="priority">Priority:</label>
-                  <select name="priority" id="priority">
+                  <input type="text" id="category" name="category" placeholder="Category">
+                  <br>
+                  <label for="tags">Tags : </label>
+                  <input type="text" id="tags" name="tags" class="tagsInput" placeholder="Enter ,(comma) seperated tags">
+                  <label for="priority">Priority : </label>
+                  <select name="priority" id="priority" class="priorityInput">
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                   </select>
-                  <label for="dueDate">Due Date:</label>
+                  <label for="dueDate">Due Date : </label>
                   <input type="date" id="dueDate" name="dueDate">
-                  <label for="reminder">Want reminder for this task?</label> 
+                  <br>
+                  <label for="reminder">Want reminder for this task? </label> 
                   <select id="reminder" name="reminder">
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </select>
                 </div>
-                <button id="savebtn">Add Task</button>
+                <button id="savebtn" class="savebtn">Add Task</button>
               </div>
               <hr>
-              <ul id="tasks"></ul>
-              <button class="delAll">Delete All</button>
+              <ul id="tasks" class="tasks"></ul>
+              <button class="delAll">Clear All</button>
             </div>
             
         </div>

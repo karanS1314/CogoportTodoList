@@ -142,9 +142,40 @@ function renderlist() {
       task.classList.add("task-done");
       taskCheck.checked = "true";
     }
-    const taskText = document.createElement("span");
+    const textDiv = document.createElement("div");
+    const taskText = document.createElement("li");
     taskText.classList.add("task-text");
     taskText.innerHTML = arrayOfTasks[i].title;
+
+    const subUl = document.createElement("ul");
+    for (let j = 0; j < arrayOfTasks[i].subtasks.length; j++) {
+      const subLi = document.createElement("li");
+      subLi.classList.add("sub-li");
+      subLi.innerHTML = arrayOfTasks[i].subtasks[j].title;
+      subUl.appendChild(subLi);
+    }
+
+    textDiv.append(taskText);
+    textDiv.append(subUl);
+
+    const propDiv = document.createElement("div");
+    propDiv.classList.add("propDiv");
+    const cat = document.createElement("li");
+    cat.innerHTML = "Category : " + arrayOfTasks[i].category;
+
+    const pri = document.createElement("li");
+    pri.innerHTML = "Priority : " + arrayOfTasks[i].priority;
+
+    const tag = document.createElement("li");
+    tag.innerHTML = "Tags : " + arrayOfTasks[i].tags.join();
+
+    const dat = document.createElement("li");
+    dat.innerHTML = "By : " + arrayOfTasks[i].dueDate;
+
+    propDiv.appendChild(cat);
+    propDiv.appendChild(pri);
+    propDiv.appendChild(tag);
+    propDiv.appendChild(dat);
 
     const buttonsbox = document.createElement("div");
     buttonsbox.classList.add("buttons-container");
@@ -173,6 +204,7 @@ function renderlist() {
       eSubtaskInput.type = "text";
 
       const eSubSaveBtn = document.createElement("button");
+      eSubSaveBtn.classList.add("eSubSaveBtn");
       eSubSaveBtn.innerHTML = "+";
       eSubSaveBtn.onclick = () => {
         if (eSubtaskInput.value == "") {
@@ -225,18 +257,25 @@ function renderlist() {
       eInputContainer.appendChild(eSubtaskTextContainer);
 
       const eDiv = document.createElement("div");
+      eDiv.classList.add("eDiv");
       const eDate = document.createElement("input");
       eDate.type = "date";
       eDate.value = arrayOfTasks[i].dueDate;
 
+      const eCatLabel = document.createElement("span");
+      eCatLabel.innerHTML = "Category :";
       const eCategory = document.createElement("input");
       eCategory.type = "text";
       eCategory.value = arrayOfTasks[i].category;
 
+      const eTagLabel = document.createElement("span");
+      eTagLabel.innerHTML = "Tags :";
       const eTags = document.createElement("input");
       eTags.type = "text";
       eTags.value = arrayOfTasks[i].tags;
 
+      const ePriLabel = document.createElement("span");
+      ePriLabel.innerHTML = "Priority :";
       const ePriority = document.createElement("select");
       ePriority.value = arrayOfTasks[i].priority;
       console.log(ePriority.value);
@@ -254,8 +293,14 @@ function renderlist() {
       ePriority.appendChild(option);
 
       eDiv.appendChild(eDate);
+      eDiv.appendChild(document.createElement("br"));
+      eDiv.appendChild(eCatLabel);
       eDiv.appendChild(eCategory);
+      eDiv.appendChild(document.createElement("br"));
+      eDiv.appendChild(ePriLabel);
       eDiv.appendChild(ePriority);
+      eDiv.appendChild(document.createElement("br"));
+      eDiv.appendChild(eTagLabel);
       eDiv.appendChild(eTags);
 
       const editsavebtn = document.createElement("button");
@@ -287,10 +332,25 @@ function renderlist() {
     buttonsbox.appendChild(editbtn);
     buttonsbox.appendChild(deletebtn);
 
-    task.appendChild(taskCheck);
-    task.appendChild(taskText);
-    task.appendChild(buttonsbox);
+    const Div = document.createElement("div");
+    Div.classList.add("Div");
+    const topDiv = document.createElement("div");
+    topDiv.classList.add("topDiv");
+    const botDiv = document.createElement("div");
+    botDiv.classList.add("botDiv");
+    textDiv.classList.add("textDiv");
+    taskCheck.classList.add("taskCheck");
+    topDiv.appendChild(taskCheck);
+    topDiv.appendChild(textDiv);
+    topDiv.appendChild(propDiv);
 
+    botDiv.appendChild(buttonsbox);
+
+    Div.appendChild(topDiv);
+    Div.appendChild(botDiv);
+
+    task.append(Div);
+    task.classList.add("task");
     tasksDiv.appendChild(task);
   }
 }
@@ -299,11 +359,11 @@ const savebtn = document.getElementById("savebtn");
 savebtn.onclick = () => {
   const taskInput = document.getElementById("taskinput");
   if (taskInput.value == "") {
-    alert("Invalid Entry!!");
+    alert("Task cannot have empty title / description!");
     return;
   }
   if (dueDate.value == "") {
-    alert("Chose Due Date!");
+    alert("Task must have a due date!");
     return;
   }
   const task = {
