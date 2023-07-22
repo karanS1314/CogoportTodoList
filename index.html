@@ -9,15 +9,86 @@
 </head>
 <body>
     <div class="full">
+      <h2>Todo-List</h2>
         <div class="container">
-            <h2>Todo-List</h2>
-            <div class="box">
-            <input type="text" id="taskinput" placeholder="">
-            <button id="savebtn">Add Task</button>
-            <button class="fetch">Fetch Tasks</button>
+            <div class = "col1">
+              <input id="searchbar" onkeyup="search()" type="text"
+              name="search" placeholder="Search tasks / subtasks"> 
+              <div class="filter-container">
+                <div class="filters-container">
+                  <label for="categoryFilter">Category:</label>
+                  <input id="categoryFilter" type="text"
+                    name="categoryFilter"> 
+                  <br>
+                  <label for="TagsFilter">Tags:</label>
+                  <input id="TagsFilter" type="text"
+                    name="TagsFilter" placeholder="Enter ,(comma) seperated tags"> 
+                  <br>
+                  <label for="priorityFilter">Priority:</label>
+                  <select name="priorityFilter" id="priorityFilter">
+                    <option value="none" selected>Any</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                  <br>
+                  <label for="fromDate">From:</label>
+                  <input type="date" id="fromDate" name="fromDate">
+                  <br>
+                  <label for="toDate">To:</label>
+                  <input type="date" id="toDate" name="toDate">
+                </div>
+                <button id="filterBtn">Filter</button>
+                <button id="resetFilter">Reset</button>
+                <br>
+                <label for="sort">Sort by</label>
+                <select name="sort" id="sort">
+                  <option value="1" selected>Date: Old to New</option>
+                  <option value="2">Date: New to Old</option>
+                  <option value="3">Priority: Low to High</option>
+                  <option value="4">Priority: High to Low</option>
+                </select>
+                <button id="sortBtn">Apply Sort</button>
+                <label for="backlogs">View backlogs</label>
+                <input type="checkbox" id="backlogs" onClick="toggleView()" name="backlogs">
+              </div>
             </div>
-            <ul id="tasks"></ul>
-            <button class="delAll">Delete All</button>
+            <div class = "col2">
+              <div class="input-container">
+                <div class="text-container">
+                  <input type="text" id="taskinput" placeholder="Task Title / Description">
+                </div>
+                <div id="subtask-text-container">
+                  <input type="text" id="subtaskInput" placeholder="Subtask">
+                  <button id="sub-save-btn">+</button>
+                  <div id = "subtask-saved"></div>
+                </div>
+                <div class="filters-container">
+                  <label for="category">Category:</label>
+                  <input type="text" id="category" name="category">
+                  <label for="tags">Tags:</label>
+                  <input type="text" id="tags" name="tags" placeholder="Enter ,(comma) seperated tags">
+                  <label for="priority">Priority:</label>
+                  <select name="priority" id="priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                  <label for="dueDate">Due Date:</label>
+                  <input type="date" id="dueDate" name="dueDate">
+                  <label for="reminder">Want reminder for this task?</label> 
+                  <select id="reminder" name="reminder">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+                <button id="savebtn">Add Task</button>
+              </div>
+              <hr>
+              <ul id="tasks"></ul>
+              <button class="delAll">Delete All</button>
+            </div>
+            
         </div>
     </div>
 
