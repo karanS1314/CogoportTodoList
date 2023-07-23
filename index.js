@@ -534,13 +534,13 @@ function toggleView2() {
 function search() {
   let input = document.getElementById("searchbar").value;
   input = input.toLowerCase();
-  let x = document.getElementsByClassName("task-text");
+  let x = document.getElementsByClassName("textDiv");
   for (i = 0; i < x.length; i++) {
     // console.log(x[i].innerHTML.toLowerCase());
     if (!x[i].innerHTML.toLowerCase().includes(input)) {
-      x[i].parentElement.parentElement.parentElement.style.display = "none";
+      x[i].parentElement.parentElement.style.display = "none";
     } else {
-      x[i].parentElement.parentElement.parentElement.style.display = "";
+      x[i].parentElement.parentElement.style.display = "";
     }
   }
 }
