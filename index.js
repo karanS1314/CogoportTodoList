@@ -71,7 +71,7 @@ function renderlist() {
   for (let i = 0; i < arrayOfTasks.length; i++) {
     const today = new Date();
     const yyyy = today.getFullYear();
-    let mm = today.getMonth() + 1; // Months start at 0!
+    let mm = today.getMonth() + 1;
     let dd = today.getDate();
 
     if (dd < 10) dd = "0" + dd;
@@ -80,7 +80,7 @@ function renderlist() {
     const formattedToday = yyyy + "-" + mm + "-" + dd;
     if (
       arrayOfTasks[i].reminder == "yes" &&
-      formattedToday == arrayOfTasks[i].reminder &&
+      formattedToday == arrayOfTasks[i].dueDate &&
       today.getHours() % 6 == 0
     ) {
       alert(
@@ -173,19 +173,49 @@ function renderlist() {
     const propDiv = document.createElement("div");
     propDiv.classList.add("propDiv");
     const cat = document.createElement("li");
-    cat.innerHTML = "Category : " + arrayOfTasks[i].category;
+    const catKey = document.createElement("span");
+    catKey.classList.add("prop-key");
+    const catValue = document.createElement("span");
+    catKey.innerHTML = "Category: ";
+    catValue.innerHTML = arrayOfTasks[i].category;
+    cat.appendChild(catKey);
+    cat.appendChild(catValue);
 
     const pri = document.createElement("li");
-    pri.innerHTML = "Priority : " + arrayOfTasks[i].priority;
+    const priKey = document.createElement("span");
+    priKey.classList.add("prop-key");
+    const priValue = document.createElement("span");
+    priKey.innerHTML = "Priority: ";
+    priValue.innerHTML = arrayOfTasks[i].priority;
+    pri.appendChild(priKey);
+    pri.appendChild(priValue);
 
     const tag = document.createElement("li");
-    tag.innerHTML = "Tags : " + arrayOfTasks[i].tags.join();
+    const tagKey = document.createElement("span");
+    tagKey.classList.add("prop-key");
+    const tagValue = document.createElement("span");
+    tagKey.innerHTML = "Tags: ";
+    tagValue.innerHTML = arrayOfTasks[i].tags.join();
+    tag.appendChild(tagKey);
+    tag.appendChild(tagValue);
 
     const rem = document.createElement("li");
-    rem.innerHTML = "Reminder : " + arrayOfTasks[i].reminder.toUpperCase();
+    const remKey = document.createElement("span");
+    remKey.classList.add("prop-key");
+    const remValue = document.createElement("span");
+    remKey.innerHTML = "Reminder: ";
+    remValue.innerHTML = arrayOfTasks[i].reminder.toUpperCase();
+    rem.appendChild(remKey);
+    rem.appendChild(remValue);
 
     const dat = document.createElement("li");
-    dat.innerHTML = "By : " + arrayOfTasks[i].dueDate;
+    const datKey = document.createElement("span");
+    datKey.classList.add("prop-key");
+    const datValue = document.createElement("span");
+    datKey.innerHTML = "By: ";
+    datValue.innerHTML = arrayOfTasks[i].dueDate;
+    dat.appendChild(datKey);
+    dat.appendChild(datValue);
 
     propDiv.appendChild(cat);
     propDiv.appendChild(pri);
@@ -510,11 +540,14 @@ sortBtn.onclick = () => {
     arrayOfTasks.sort(function (task1, task2) {
       return priorities[task2.priority] - priorities[task1.priority];
     });
-  } else {
+  } else if (sortBy == 4) {
     arrayOfTasks.sort(function (task1, task2) {
       return priorities[task1.priority] - priorities[task2.priority];
     });
-    console.log(arrayOfTasks);
+  } else {
+    arrayOfTasks.sort(function (task1, task2) {
+      return task1.id - task2.id;
+    });
   }
   renderlist();
 };
@@ -526,6 +559,7 @@ function toggleView() {
   window.localStorage.setItem("backlog", JSON.stringify(vBacklog));
   renderlist();
 }
+
 function toggleView2() {
   const isChecked = document.getElementById("pending").checked;
   console.log(isChecked);
@@ -534,13 +568,11 @@ function toggleView2() {
   renderlist();
 }
 
-// search function
 function search() {
   let input = document.getElementById("searchbar").value;
   input = input.toLowerCase();
   let x = document.getElementsByClassName("textDiv");
   for (i = 0; i < x.length; i++) {
-    // console.log(x[i].innerHTML.toLowerCase());
     if (!x[i].innerHTML.toLowerCase().includes(input)) {
       x[i].parentElement.parentElement.style.display = "none";
     } else {

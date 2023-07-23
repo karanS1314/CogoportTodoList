@@ -136,6 +136,10 @@ li button {
 .propDiv{
     grid-area: col3;
 }
+.prop-key{
+    font-weight: bolder;
+    margin-right: 0.5rem;
+}
 .sub-li{
     padding: 0 10px;
     font-weight: normal !important;

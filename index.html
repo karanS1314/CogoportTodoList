@@ -45,8 +45,9 @@
                 <hr>
                 <label for="sort">Sort by</label>
                 <select name="sort" id="sort">
-                  <option value="1" selected>Date: Old to New</option>
-                  <option value="2">Date: New to Old</option>
+                  <option value="0" selected>Date-Added</option>
+                  <option value="1">Due-Date: Early to Late</option>
+                  <option value="2">Due-Date: Late to Early</option>
                   <option value="3">Priority: Low to High</option>
                   <option value="4">Priority: High to Low</option>
                 </select>
@@ -62,7 +63,7 @@
             <div class = "col2">
               <div class="input-container">
                 <div class="text-container">
-                  <input type="text" id="taskinput" placeholder="Task Title / Description">
+                  <input type="text" id="taskinput" placeholder="Task Title / Description *">
                 </div>
                 <div id="subtask-text-container">
                   <input type="text" id="subtaskInput" class="subtaskInput" placeholder="Subtask">
