@@ -181,12 +181,16 @@ function renderlist() {
     const tag = document.createElement("li");
     tag.innerHTML = "Tags : " + arrayOfTasks[i].tags.join();
 
+    const rem = document.createElement("li");
+    rem.innerHTML = "Reminder : " + arrayOfTasks[i].reminder.toUpperCase();
+
     const dat = document.createElement("li");
     dat.innerHTML = "By : " + arrayOfTasks[i].dueDate;
 
     propDiv.appendChild(cat);
     propDiv.appendChild(pri);
     propDiv.appendChild(tag);
+    propDiv.appendChild(rem);
     propDiv.appendChild(dat);
 
     const buttonsbox = document.createElement("div");

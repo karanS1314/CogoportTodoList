@@ -122,15 +122,15 @@ li button {
     margin: 10px;
 }
 .topDiv{
-    position: relative;
     display: grid;
     grid-template-areas: "col1 col2 col3";
-    grid-auto-columns: 0.001fr 3fr 1fr;
+    grid-auto-columns: 0.001fr 2.5fr 1fr;
 }
 .taskCheck{
     grid-area: col1;
 }
 .textDiv{
+    width: 100%;
     grid-area: col2;
 }
 .propDiv{
