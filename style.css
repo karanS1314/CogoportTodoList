@@ -166,7 +166,9 @@ li button {
 .leftBtns{
     background-color: var(--blue);
 }
-
+.leftInputs{
+    background-color: rgba(248, 248, 248, 0.384) !important;
+}
 .edit-button{
     background-color: var(--blue);
 }
