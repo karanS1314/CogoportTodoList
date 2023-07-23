@@ -5,12 +5,12 @@
     --blue:rgb(36, 111, 224);
     --darkblue:rgb(0, 18, 44);
     --green:#2ecc71;;
-  }
+}
   
-  ::placeholder {
+::placeholder {
     color: rgb(65, 65, 65);
     opacity: 1; /* Firefox */
-  }
+}
 body {
     font-family: 'Ubuntu', sans-serif;
     background-color: var(--offwhite);
@@ -21,9 +21,8 @@ body {
 }
 
 .full{
-     /* display: flex; */
      justify-content: center;
-  }
+}
 
 .container{
     display: grid;
@@ -31,6 +30,7 @@ body {
     grid-template-areas: "col1 col2";
     padding: 0rem calc((100vw - 1200px) / 2);
 }
+
 .col1{
     grid-area: col1;
     background-color: var(--red);
@@ -59,7 +59,7 @@ h2 {
     justify-content: center;
 }
 label{
-    font-size: 20px;
+    font-size: 18px;
 }
 input[type="text"] {
     color: var(--darkblue);
@@ -75,7 +75,7 @@ input[type="text"] {
     width: 80% !important;
 }
 .tagsInput{
-    width: 83% !important;
+    width: 82% !important;
 }
 .priorityInput{
     margin-right: 15rem;
@@ -166,6 +166,9 @@ li button {
 .leftBtns{
     background-color: var(--blue);
 }
+.backlog-task{
+    background-color: rgb(236, 118, 118);
+}
 .leftInputs{
     background-color: rgba(248, 248, 248, 0.384) !important;
 }
@@ -179,7 +182,3 @@ li button {
     background-color: var(--red);
     width: 100%;
 }
-.fetch{
-    background-color: #352f5b;
-}
-

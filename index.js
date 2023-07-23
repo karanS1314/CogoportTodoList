@@ -3,6 +3,7 @@ let subtasksArray = [];
 let filter = {};
 let sortBy = {};
 let vBacklog = 0;
+let vPendingOnly = 0;
 let editID = "";
 
 if (window.localStorage.getItem("tasks")) {
@@ -16,6 +17,9 @@ if (window.localStorage.getItem("filters")) {
 }
 if (window.localStorage.getItem("backlog")) {
   vBacklog = window.localStorage.getItem("backlog");
+}
+if (window.localStorage.getItem("vPendingOnly")) {
+  vPendingOnly = window.localStorage.getItem("vPendingOnly");
 }
 
 function addtask(task) {
@@ -83,9 +87,14 @@ function renderlist() {
         "Last day to submit the task having title: " + arrayOfTasks[i].title
       );
     }
+    const comp = formattedToday.localeCompare(arrayOfTasks[i].dueDate);
     if (vBacklog == 1) {
-      const comp = formattedToday.localeCompare(arrayOfTasks[i].dueDate);
-      if (comp == 0 || comp == -1) {
+      if (comp == 0 || comp == -1 || arrayOfTasks[i].completed) {
+        continue;
+      }
+    }
+    if (vPendingOnly == 1) {
+      if (arrayOfTasks[i].completed) {
         continue;
       }
     }
@@ -96,7 +105,7 @@ function renderlist() {
         for (let k = 0; k < filterTagArray.length; k++) {
           let tagPresent = 0;
           for (let j = 0; j < arrayOfTasks[i].tags.length; j++) {
-            if (filterTagArray[k] == arrayOfTasks[i].tags[j]) {
+            if (filterTagArray[k].trim() == arrayOfTasks[i].tags[j].trim()) {
               tagPresent = 1;
               continue;
             }
@@ -131,12 +140,12 @@ function renderlist() {
     }
     const taskID = arrayOfTasks[i].id;
     const task = document.createElement("li");
-
     const taskCheck = document.createElement("input");
     taskCheck.type = "checkbox";
     taskCheck.onclick = (e) => {
       e.target.parentElement.classList.toggle("task-done");
       updateStatus(taskID);
+      renderlist();
     };
     if (arrayOfTasks[i].completed) {
       task.classList.add("task-done");
@@ -146,7 +155,10 @@ function renderlist() {
     const taskText = document.createElement("li");
     taskText.classList.add("task-text");
     taskText.innerHTML = arrayOfTasks[i].title;
-
+    if (comp == 1) {
+      taskText.classList.add("backlog-task");
+      taskText.innerHTML = arrayOfTasks[i].title + " (EXPIRED)";
+    }
     const subUl = document.createElement("ul");
     for (let j = 0; j < arrayOfTasks[i].subtasks.length; j++) {
       const subLi = document.createElement("li");
@@ -504,8 +516,17 @@ sortBtn.onclick = () => {
 };
 
 function toggleView() {
-  vBacklog = 1 - vBacklog;
+  const isChecked = document.getElementById("backlogs").checked;
+  console.log(isChecked);
+  vBacklog = isChecked ? 1 : 0;
   window.localStorage.setItem("backlog", JSON.stringify(vBacklog));
+  renderlist();
+}
+function toggleView2() {
+  const isChecked = document.getElementById("pending").checked;
+  console.log(isChecked);
+  vPendingOnly = isChecked ? 1 : 0;
+  window.localStorage.setItem("pendingOnly", JSON.stringify(vBacklog));
   renderlist();
 }
 
@@ -517,9 +538,9 @@ function search() {
   for (i = 0; i < x.length; i++) {
     // console.log(x[i].innerHTML.toLowerCase());
     if (!x[i].innerHTML.toLowerCase().includes(input)) {
-      x[i].parentElement.style.display = "none";
+      x[i].parentElement.parentElement.parentElement.style.display = "none";
     } else {
-      x[i].parentElement.style.display = "";
+      x[i].parentElement.parentElement.parentElement.style.display = "";
     }
   }
 }

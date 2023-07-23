@@ -20,13 +20,14 @@
               <div class="filter-container">
                 <div class="filters-container">
                   <input id="categoryFilter" type="text"
-                    name="categoryFilter" class="leftInputs" placeholder="Enter Category"> 
+                    name="categoryFilter" class="leftInputs" placeholder="Enter exact category"> 
                   <br>
                   <input id="TagsFilter" type="text"
                     name="TagsFilter" class="leftInputs" placeholder="Enter ,(comma) seperated tags"> 
                   <br>
                   <label for="priorityFilter">Priority:</label>
                   <select name="priorityFilter" id="priorityFilter">
+                    <option value="none" selected hidden>Any</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
@@ -53,6 +54,9 @@
                 <hr>
                 <label for="backlogs">View backlogs</label>
                 <input type="checkbox" id="backlogs" onClick="toggleView()" name="backlogs">
+                <br>
+                <label for="pending">Show pending tasks only</label>
+                <input type="checkbox" id="pending" onClick="toggleView2()" name="pending">
               </div>
             </div>
             <div class = "col2">
